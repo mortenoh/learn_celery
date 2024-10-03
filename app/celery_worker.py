@@ -10,6 +10,12 @@ celery_app = Celery(
 
 # Celery Beat schedule
 celery_app.conf.update(
+    timezone="UTC",
+    beat_scheduler="celery.beat.PersistentScheduler",  # Use persistent scheduler
+    beat_schedule_filename="/app/celerybeat-schedule.db",  # Store schedule in a .db file
+)
+
+celery_app.conf.update(
     beat_schedule={
         "say-hello-every-30-seconds": {
             "task": "app.tasks.add",
@@ -17,9 +23,6 @@ celery_app.conf.update(
             "args": (10, 20),
         },
     },
-    timezone="UTC",
-    beat_scheduler="celery.beat.PersistentScheduler",  # Use persistent scheduler
-    beat_schedule_filename="/app/celerybeat-schedule.db",  # Store schedule in a .db file
 )
 
 # Auto-discover tasks from the 'app' module
