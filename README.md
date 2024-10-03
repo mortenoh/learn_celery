@@ -1,5 +1,7 @@
 # Simple docker based Celery/Beat demo
 
+You should have `uv` installed.
+
 ## Install
 
 ```
