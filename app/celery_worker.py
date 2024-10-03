@@ -19,7 +19,7 @@ celery_app.conf.update(
     },
     timezone="UTC",
     beat_scheduler="celery.beat.PersistentScheduler",  # Use persistent scheduler
-    beat_schedule_filename="/code/celerybeat-schedule.db",  # Store schedule in a .db file
+    beat_schedule_filename="/app/celerybeat-schedule.db",  # Store schedule in a .db file
 )
 
 # Auto-discover tasks from the 'app' module
